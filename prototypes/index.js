@@ -23,9 +23,13 @@ const kittyPrompts = {
     // Return an array of just the names of kitties who are orange e.g.
     // ['Tiger', 'Snickers']
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+    const result = kitties.filter((kitty) => {
+        return kitty.color === 'orange';
+        }).map((orangeKitty) => {
+        return orangeKitty.name
+    })
 
+        return result;
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -113,6 +117,7 @@ const clubPrompts = {
 // DATASET: mods from ./datasets/mods
 const modPrompts = {
   studentsPerMod() {
+
     // Return an array of objects where the keys are mod (the number of the module)
     // and studentsPerInstructor (how many students per instructor there are for that mod) e.g.
     // [
@@ -122,7 +127,11 @@ const modPrompts = {
     //   { mod: 4, studentsPerInstructor: 8 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = mods.map((mod) => {
+        let studentsPerInstructor = mod.students / mod.instructors;
+        return { mod: mod.mod, 
+                studentsPerInstructor: studentsPerInstructor }
+    });
     return result;
 
     // Annotation:
