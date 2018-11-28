@@ -16,12 +16,14 @@ const context = {
 
 
     // What is the value of `this` when we call ship.fly()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    ship.fly();
+    const result = 'global window object';
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
-  },
+    // When we create a new instance of the SpaceProbe class, this.fly = fly refers to the function fly above it. 
+    // The fly arrow function is declared in the global scope, so its `this` refers to the window object.
+      },
 
   exerciseB() {
     function fn() {
@@ -30,11 +32,11 @@ const context = {
     }
     
     // What is the value of `this` when we call fn()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'global window object'; 
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // The function fn is invoked in the global scope, so `this` is refering to the global window object.
   },
 
   exerciseC() {
@@ -47,19 +49,26 @@ const context = {
 
     const el = document.getElementById('btn');
     el.addEventListener('click', car.getInfo);
+    
+    el.addEventListener('click', function() {
+      console.log(this)
+    });
 
     // What is the value of `this` when a user clicks on our element and car.getInfo() is triggered?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'el';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment
+    // When the event listener el is clicked, car.getInfo is invoked in the scope of the element. 
+    // Because it was defined using ES5 syntax, its `this` refers to the scope of who called it, which is el.
   },
 
   exerciseD() {
     const dog = {
       breed: 'Chihuahua',
       getBreed: function(){
+        console.log(this) // this should be the dog object
+
         const innerFunction = function() {
           console.log(this.breed);
         };
@@ -70,11 +79,12 @@ const context = {
 
 
     // What is the value of `this` when we call dog.getBreed()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'global window object';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment
+    // The getBreed and innerFunction functions both use ES5 syntax and the getBreed function is invoked in the global scope.
+    // Therefore, `this` refers to the global window object.
   },
 
   exerciseE() {
@@ -86,11 +96,12 @@ const context = {
 
 
     // What is the value of `this` when we call fn()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'global window object';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment
+   // The fn function is declared in the scope of the global window. Therefore, wherever we call it, `this` will refer to the global window object.
+   // Even if we used ES5 syntax and called it in the window scope, `this` would also refer to the global window object.
   },
 
   exerciseF() {
@@ -109,11 +120,12 @@ const context = {
     const storm = new Hero('Ororo', 'weather control', true);
 
     // What is the value of `this` when we call storm.identifyHero()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'instance of Hero';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment
+    // A new instance of Hero is created, therefore when we attach the identifyHero method
+    // to the object, `this` refers to the instance of Hero.
   },
 
   exerciseG() {
@@ -137,31 +149,33 @@ const context = {
 
 
     // What is the value of `this` when we call monopoly.restart()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'global window object';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment
+    // The setTimeout callback function is using ES5, so `this` refers back to the scope in which it was invoked. 
+    // Then when we call monopoly.restart() from the global scope, `this` refers to the window object.
   },
 
   exerciseH() {
     const obj = {
       arrowFunction: null,
       method: function() {
-        this.arrowFunction = () => { 
+        // at this point this refers to the obj (because we are a method...)
+        this.arrowFunction = () => { // this.arrowFunction gets defined within method's scope (this == obj), so arrowFunction's this becomes obj
           return this;
         };
       }
     };
 
-    obj.method();
+    obj.method(); // this ends up setting obj.arrowFunction with the arrowFunction, whose this refers to obj.
 
     // What is the value of `this` when we call obj.arrowFunction()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'obj';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment
+    // `This` has access to the obj object. Therefore, `this` is referring to obj.
   },
 
   exerciseI() {  
@@ -180,11 +194,15 @@ const context = {
     }, poets);
 
     // What is the value of `this` that gets returned on each iteration of poets.map()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'poets';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment. Annotation should include explanation regarding the second argument of `poets` that is being passed
+    // Each iteration in this map loop has access to the poets array because of the second declaration. Therefore, `this` refers to the poets array.
+    // This would return the window object as this:
+    // poets.map(function(poet) {
+    //   return this;
+    // });
   },
 
   exerciseJ() {
@@ -194,11 +212,11 @@ const context = {
     });
 
     // What is the value of `this` when a user clicks on our #btn element and the callback is triggered?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'el';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment.
+    // `This` is bound to el when the button is clicked.
   },
 
   exerciseK() {
@@ -208,11 +226,11 @@ const context = {
     });
 
     // What is the value of `this` when a user clicks on our #btn element and the callback is triggered?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'el';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment.
+    // Using the ES6 arrow function, `this` is declared in the element, so it is still referring to the event el.
   }
 
 };
