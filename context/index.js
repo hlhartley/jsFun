@@ -175,7 +175,8 @@ const context = {
     return result;
 
     // Annotation: 
-    // `This` has access to the obj object. Therefore, `this` is referring to obj.
+    // `This` has access to the obj object because it is using an arrow function, which refers to the point of declaration. 
+    // Therefore, `this` is referring to obj.
   },
 
   exerciseI() {  
@@ -198,7 +199,7 @@ const context = {
     return result;
 
     // Annotation: 
-    // Each iteration in this map loop has access to the poets array because of the second declaration. Therefore, `this` refers to the poets array.
+    // Each iteration in this map loop has access to the poets array because of the second declaration(thisArg). Therefore, `this` refers to the poets array.
     // This would return the window object as this:
     // poets.map(function(poet) {
     //   return this;

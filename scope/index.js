@@ -420,8 +420,8 @@ const scope = {
     // Log B: num
 
     const result = [
-                    {A: },
-                    {B: },
+                    {A: 7},
+                    {B: 7},
                     ]; 
     return result;
 
@@ -455,10 +455,9 @@ const scope = {
     // Log C: grade
 
     const result = [
-                    {A: ''},
-                    {B: ''},
-                    {C: ''},
-                    {D: ''}
+                    {A: 95},
+                    {B: 90},
+                    {C: 90},
                     ]; 
     return result;
 
@@ -486,10 +485,10 @@ const scope = {
     // Log D: num
 
     const result = [
-                    {A: ''},
-                    {B: ''},
-                    {C: ''},
-                    {D: ''}
+                    {A: 5},
+                    {B: 6},
+                    {C: "reference error"},
+                    {D: 6}
                     ]; 
     return result;
 
@@ -530,10 +529,12 @@ const scope = {
     // Log F: instructor
 
     const result = [
-                    {A: ''},
-                    {B: ''},
-                    {C: ''},
-                    {D: ''}
+                    {E: 'Pam'},
+                    {A: 'Pam'},
+                    {B: 'Pam'},
+                    {C: 'Louisa'},
+                    {D: 'Louisa'},
+                    {F: 'Louisa'}
                     ]; 
     return result;
 
@@ -554,10 +555,9 @@ const scope = {
     // Log C: shoe
 
     const result = [
-                    {A: ''},
-                    {B: ''},
-                    {C: ''},
-                    {D: ''}
+                    {B: 'flipflop'},
+                    {A: 'undefined'},
+                    {C: 'flipflop'}
                     ]; 
     return result;
 
@@ -585,10 +585,8 @@ const scope = {
     // Log C: lunch
 
     const result = [
-                    {A: ''},
-                    {B: ''},
-                    {C: ''},
-                    {D: ''}
+                    {B: 'soup'},
+                    {C: 'soup'}
                     ]; 
     return result;
 
@@ -627,10 +625,11 @@ const scope = {
     myCrazyKidAntics(myKid);
 
     const result = [
-                    {A: ''},
-                    {B: ''},
-                    {C: ''},
-                    {D: ''}
+                    {A: 'Pandora'},
+                    {B: ['Antigone', 'Pandora']},
+                    {C: 'Mandy'},
+                    {D: 'Antigone'},
+                    {E: 'Pandora'}
                     ]; 
     return result;
 
@@ -658,7 +657,12 @@ const scope = {
     parentFunc();
     // Log D: myName
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+                    {A: 'Rody'},
+                    {B: 'RodyToy'},
+                    {C: 'Tesla'},
+                    {D: 'RodyToyDaniels'}
+                    ];
     return result;
 
     // Annotation:
