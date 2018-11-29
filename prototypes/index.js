@@ -26,7 +26,7 @@ const kittyPrompts = {
     const result = kitties.filter((kitty) => {
         return kitty.color === 'orange';
         }).map((orangeKitty) => {
-        return orangeKitty.name
+        return orangeKitty.name;
     })
 
         return result;
@@ -37,12 +37,17 @@ const kittyPrompts = {
   sortByAge() {
     // Sort the kitties by their age
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.sort((a, b) => {
+    return b.age - a.age; 
+    });
     return result;
-
+},
     // Annotation:
-    // Write your annotation here as a comment
-  },
+    // The sort array prototype method is used to sort kitties in order by age. 'a' and 'b' are passed
+    // in as parameters in our callback function. 'a' represents the first element in the array
+    // that you are comparing. 'b' is the next element in the array. It will iterate through all
+    // the elements until all elements are in order from smallest to largest because our return statment
+    // is set up as a.age - b.age. If we did b.age - a.age, it would be from largest to smallest. 
 
   growUp() {
     // Return an array of kitties who have all grown up by 2 years e.g.
@@ -58,7 +63,10 @@ const kittyPrompts = {
     // },
     // ...etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.map((kitty) => {
+        kitty.age += 2;
+        return kitty;
+    });
     return result;
   }
 };
@@ -90,11 +98,25 @@ const clubPrompts = {
     //   ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = clubs.reduce((acc, currentClub) => {
+        currentClub.members.forEach((member) => {
+            if(!acc[member]) {
+                acc[member] = [currentClub.club];
+            } else {
+                acc[member].push(currentClub.club); 
+            }
+        })
+        return acc;
+    }, {});
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We want to return one object, so we will use the reduce array prototype method.
+    // Using forEach to iterate over each club's member array. If our accumulator doesn't have
+    // a key of member, we are creating a key of member with the value of an array
+    // of currentClub. If the accumulator has the key of the member created, push
+    // the current club into the member's array. Finally, return a single object 
+    // with the member as keyand their clubs in an array for their value.
   }
 };
 
@@ -166,11 +188,15 @@ const cakePrompts = {
     //    ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.map((cake) => {
+        return {flavor: cake.cakeFlavor, inStock: cake.inStock}
+    });
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Since we are returning an array of objects, we infer we the same number as original array so we will use MAP. While mapping over the cakes array, 
+    // we only want to return objects with the flavor and in stock properties. By setting flavor to cake.cakeFlavor and instock to cake.inStock, we grab those 
+    // properties over each current cake as we iterate through the entire array. 
   },
 
   onlyInStock() {
@@ -194,7 +220,9 @@ const cakePrompts = {
     // ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.filter((cake) => {
+  return cake.inStock > 0;
+});
     return result;
 
     // Annotation:
@@ -205,7 +233,10 @@ const cakePrompts = {
     // Return the total amount of cakes in stock e.g.
     // 59
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((sum, currentCake) => {
+  sum += currentCake.inStock;
+  return sum
+}, 0);
     return result;
 
     // Annotation:
