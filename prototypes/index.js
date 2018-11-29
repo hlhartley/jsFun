@@ -28,8 +28,7 @@ const kittyPrompts = {
         }).map((orangeKitty) => {
         return orangeKitty.name;
     })
-
-        return result;
+    return result;
     // Annotation:
     // Write your annotation here as a comment
   },
@@ -38,7 +37,7 @@ const kittyPrompts = {
     // Sort the kitties by their age
 
     const result = kitties.sort((a, b) => {
-    return b.age - a.age; 
+        return b.age - a.age; 
     });
     return result;
 },
@@ -67,11 +66,11 @@ const kittyPrompts = {
         kitty.age += 2;
         return kitty;
     });
-    return result;
+return result;
+
+    // Annotation:
   }
 };
-
-
 
 
 
@@ -152,7 +151,7 @@ const modPrompts = {
     const result = mods.map((mod) => {
         let studentsPerInstructor = mod.students / mod.instructors;
         return { mod: mod.mod, 
-                studentsPerInstructor: studentsPerInstructor }
+                studentsPerInstructor: studentsPerInstructor };
     });
     return result;
 
@@ -189,7 +188,7 @@ const cakePrompts = {
     // ]
 
     const result = cakes.map((cake) => {
-        return {flavor: cake.cakeFlavor, inStock: cake.inStock}
+        return {flavor: cake.cakeFlavor, inStock: cake.inStock};
     });
     return result;
 
@@ -221,8 +220,8 @@ const cakePrompts = {
     // ]
 
     const result = cakes.filter((cake) => {
-  return cake.inStock > 0;
-});
+        return cake.inStock > 0;
+    });
     return result;
 
     // Annotation:
@@ -234,9 +233,9 @@ const cakePrompts = {
     // 59
 
     const result = cakes.reduce((sum, currentCake) => {
-  sum += currentCake.inStock;
-  return sum
-}, 0);
+        sum += currentCake.inStock;
+        return sum;
+    }, 0);
     return result;
 
     // Annotation:
@@ -248,7 +247,14 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((acc, currentCake) => {
+        currentCake.toppings.forEach((topping) => {
+            if(!acc.includes(topping)) {
+                acc.push(topping);
+            }
+        });
+        return acc;
+    }, []);
     return result;
 
     // Annotation:
@@ -266,7 +272,15 @@ const cakePrompts = {
     //    ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((acc, currentCake) => {
+        currentCake.toppings.forEach((topping) => {
+            if(!acc[topping]) {
+                acc[topping] = 0;
+            }
+            acc[topping]++
+        });
+        return acc
+    }, {});
     return result;
 
     // Annotation:
@@ -301,7 +315,9 @@ const classPrompts = {
     //   { roomLetter: 'G', program: 'FE', capacity: 29 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.filter((room) => {
+        return room.program === 'FE'
+        });
     return result;
 
     // Annotation:
@@ -316,22 +332,39 @@ const classPrompts = {
     //   beCapacity: 96
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.reduce((acc, room) => {
+        if (room.program === 'FE') {
+            acc.feCapacity += room.capacity;
+        } else if (room.program === 'BE') {
+            acc.beCapacity += room.capacity;
+        }
+        return acc
+    }, {feCapacity: 0, beCapacity: 0});
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // The ultimate goal is to produce one object (with feCapacity: #, beCapacity: #}, so we will need to use the array prototype 
+    // method reduce.
+    // Initially, we set up the initial values for our acc object as {feCapacity: 0, beCapacity: 0} in our
+    // reduce method. 
+    // We will iterate through each classroom, and if the room.program is strictly equals to 'FE', then we will
+    // add the room.capacity number each time to the acc object's feCapacity value(#).
+    // Otherwise, if the room.program is strictly equals to 'BE', the room.capacity number will be added
+    // each time to the beCapacity value (#) in the initial object that we created. 
+    // Finally, the acc object is returned.
   },
 
   sortByCapacity() {
     // Return the array of classrooms sorted by their capacity (least capacity to greatest)
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.sort((a, b) => {
+        return a.capacity - b.capacity
+    });
     return result;
 
     // Annotation:
     // Write your annotation here as a comment
-  }
+    }
 };
 
 
@@ -356,7 +389,10 @@ const breweryPrompts = {
     // Return the total beer count of all beers for every brewery e.g.
     // 40
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = breweries.reduce((sum, currentBrewery) => {
+    sum += currentBrewery.beers.length;
+        return sum;
+    }, 0);
     return result;
 
     // Annotation:
@@ -372,7 +408,9 @@ const breweryPrompts = {
     // ...etc.
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = breweries.map((brewery) => {
+        return {name: brewery.name, beerCount: brewery.beers.length}
+    });
     return result;
 
     // Annotation:
@@ -384,11 +422,50 @@ const breweryPrompts = {
     // e.g.
     // { name: 'Barrel Aged Nature\'s Sweater', type: 'Barley Wine', abv: 10.9, ibu: 40 }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+        // const allBeers = breweries.reduce((acc, brewery) => {
+        //       acc = acc.concat(brewery.beers)
+        //       return acc;
+        //     }, []).find((beer) => {
+        //       return Math.max(beer.abv)
+        //     });
+        // allBeers;
+
+    // const result = breweries.reduce((acc, brewery) => {
+    //   acc = acc.concat(brewery.beers);
+    //   return acc;
+    //     }, []);
+    //     let beerAbvs = allBeers.reduce((acc, beer) => {
+    //     acc = acc.concat(beer.abv);
+    //     return acc
+    //     }, []);
+    //     let highestBeer = Math.max(...beerAbvs);
+    //     highestBeer
+
+        // get all beers in 1 array
+        // interate through all beers
+        // find beer with highest abv
+        // return 1 object
 
     // Annotation:
     // Write your annotation here as a comment
+
+
+    // const allBeers = breweries.reduce((acc, brewery) => {
+    //   acc = acc.concat(brewery.beers);
+    //   return acc;
+    // }, []);
+
+    // const mapByAttribute = (collection, attribute) => {
+    //   return collection.map(item => {
+    //     return item[attribute];
+    //   })
+    // }
+
+    // let beerAbv = mapByAttribute(allBeers, 'abv');
+    // let beerIbu = mapByAttribute(allBeers, 'ibu');
+
+    // Math.max.apply(null, beerAbv);
+    // OR Math.max(...beerAbv);
   }
 };
 
@@ -432,12 +509,24 @@ const turingPrompts = {
     //  { name: 'Robbie', studentCount: 18 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = instructors.map((instructor) => {
+    let matchingCohort = cohorts.find((cohort) => {
+      return cohort.module === instructor.module;
+    });
+    let numberStudents = matchingCohort.studentCount;
+    return { name: instructor.name, studentCount: numberStudents }
+  });
     return result;
 
     // Annotation:
     // Write your annotation here as a comment
   },
+
+  // map over our instructors array
+  // find the matching cohort for our current instructor
+  // grab student count value from the matching cohort
+  // return an object with current instructors name and studentCount value
+
 
   studentsPerInstructor() {
     // Return an object of how many students per teacher there are in each cohort e.g.
@@ -448,6 +537,16 @@ const turingPrompts = {
 
     const result = 'REPLACE WITH YOUR RESULT HERE';
     return result;
+
+  // Working with 2 arrays
+    // want back an object
+    // Use Map
+    // Module in common
+
+    // Map over each cohort
+    // Calculate number of teachers per module
+    // Divide studentCount by numberOfTeachers
+    // Create new object with cohort as key, and studentCount as value
 
     // Annotation:
     // Write your annotation here as a comment
