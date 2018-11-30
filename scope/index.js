@@ -544,7 +544,13 @@ const scope = {
     return result;
 
     // Annotation:
-    // We declare a global variable num and assign it the value of 10.
+    // First, we declare a global variable num and assign it the value of 10.
+    // Then we declare the function 'foo', but don't execute it until it is called on line 536.
+    // After it is called, we evaluate the if statement. 
+    // The variable num is not defined within the function, so the interpreter looks globally and sees that num equals 10.
+    // 10 is greater than 5, so we assign the variable num to 7 and this applies globally as well.
+    // We console.log A as 7.
+    // We exit out of the 'foo' function and console.log B which is also 7 (because we changed the value globally as well).
   },
 
   exerciseL() {
@@ -581,6 +587,13 @@ const scope = {
 
     // Annotation:
     // We declare a global variable grade and assign it the value of 100.
+    // Then we declare the function 'losePoints', but do not execute it until it is invoked on line 577.
+    // Once 'losePoints' is invoked, we assign the variable grade to the value of 90. Because it was declared not using a keyword, it will reassign the global variable grade to 90.
+    // Then we declare the function 'addPoints', but do not execute it until it is invoked on line 572.
+    // After that, we look at the if statement. Since the variable grade is strictly equals to 95, we declare the variable grade and assign it a value of 97 within the block scope.
+    // Next, we console.log A which is 95.
+    // We exit out of the 'addPoints' function and console.log B which is 90.
+    // We exit out of the 'losePoints' function and console.log C which is still 90.
   },
 
   exerciseM() {
