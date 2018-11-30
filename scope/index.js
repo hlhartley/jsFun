@@ -38,7 +38,20 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // First, we declare 3 global variables - personA, personB, and personC and assign them values of 'Paul', 'Ben', and 'Tom'.
+    // Next, we declare a function called `changePerson`, but because we haven't invoked it yet, we skip down to line 28.
+    // On line 28, we inboke our 'changePerson' function which brings us back to line 3.
+    // Within this function, first we declare another function called 'beautifyPerson', but it is not run yet, until it is invoked. 
+    // Next, in the local execution phase, we run the if statement first. Since at this point in time personA does strictly equal 'Paul', we assign the variable person a value of 'CardiB'.
+    // There is no person variable declared within the function, so the interpreter looks to the global scope.
+    // In the global scope, it doesn't find the variable person either, so it creates a new var called var person assigned the value of 'CardiB' in global scope.
+    // Then we invoke the 'beautifyPerson' function.
+    // We console.log A: personB as 'CardiB' (because it is now defined in the global scope).
+    // Then, the if statement runs on line 16. personB, 'Ben', does include B, so personB is now reassigned the value of person, which is 'CardiB'.
+    // PersonC is reassigned the value of personB, which is 'CardiB'.
+    // We console.log C: personC as CardiB. We exit out of the function 'beautifyPerson'.
+    // Then, personC is reassigned to the value of personA, which is 'Paul'.
+    // We exit out of the 'changePerson' function and finally, console.log personC which equals 'Paul'.
   },
 
   exerciseB() {
@@ -77,7 +90,18 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // First, we declare a global variable - number and assign it a value of 30.
+    // Next, we declare a function called `numberFunction`, but because we haven't invoked it yet, we skip down to line 80.
+    // On line 80, we inboke our 'numberFunction' function which brings us back to line 60.
+    // Within this function, first we declare another variable called 'number', assigned the value of 75, but it is declared using 'let', so it is only functionally scoped and does not leak out of the function.
+    // Next, the if statement is executed. At this point the variable number strictly equals 75, true, so number is assigned the value 28, only within this block scope.
+    // We console.log A as 75 - referring to the functional scope of the variable.
+    // On line 69, we declare a new function 'newNumber', but do not run it until it is invoked on line 75.
+    // The 'newNumber' function is run. Number is not given the keyword var, let, or const, so it is reassigned within the numberFunction (line61) as now having the value of 64.
+    // We console.log B as 64.
+    // We pop 'newNumber' off the call stack and console.log C as also 64.
+    // We pop 'numberFunction' off the call stack and now console.log D as 30 (line 58), because the other variables are functionally/block scoped, so we must refer to the globally scoped number variable.
+    // 
   },
 
   exerciseC() {
@@ -116,7 +140,16 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // First, we declare the global variable 'greeting' on line 108. We assign it the value of 'Hello'.
+    // Next, we declare the function 'greetingFunction', but do not run it until it is invoked on line 130.
+    // We run the 'greetingFunction' function and assign the variable greeting in the functional scope as 'Yo'.
+    // The if statement is run. The var greeting strictly equals 'Yo', so greeting is reassigned the value of 'Howdy', but only in the block scope, because it was declared using the keyword let.
+    // We console.log A as 'Yo' referring to the functionally scoped var value (line 111).
+    // Next, we declare the 'newPhrase' function. It is not run until it is invoked on line 125.
+    // We go back up to line 120. Greeting is not declared using var, let, or const, so it reassigns the functionally scoped variable greeting as now 'Hey'.
+    // We console.log B as 'Hey'.
+    // We pop 'newPhrase' function off the call stack and console.log C, which has the value of 'Hey'.
+    // We exit out of the 'greetingFunction' function and console.log D, which is 'Hello'.
   },
 
   exerciseD() {
@@ -155,7 +188,16 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // First we declare the global variable greeting and assign it the value of 'howdy'.
+    // We declare the function 'greetingGenerator', but do not run it until it is invoked on line 178.
+    // Then, we go back up to line 158. The variable greeting is declared functionally scoped and assigned the value of 'hi'.
+    // The if statement is run and the variable greeting strictly equals 'hi', so greeting (only) within this block scope is assigned the value of 'hello'.
+    // We console.log A as 'hi'.
+    // We then declare a new function 'newGreeting', but is is not run until it is invoked on line 173.
+    // After it is invoked we look at like 167. On line 168 greeting is not declared using var, let, or const, so it reassigns the functionally scoped variable greeting to the value of 'welcome'.
+    // We console.log B as 'welcome'.
+    // We exit out of the 'newGreeting' function. We console.log C which is 'welcome', because greeting was previously reassigned functionally scoped.
+    // We exit out of th 'greetingGenerator' function and console.log D, which is 'howdy'.
   },
 
   exerciseE() {
@@ -192,7 +234,15 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // On line 204 we declare a global variable name assigned to the value of 'Brittany'.
+    // On line 206 we declare a function 'sayName', but do not execute it until it is invoked on line 224.
+    // Before invoking the function 'sayName', we console.log D which is 'Brittany'.
+    // We go back up to line 206. The variable name is declared using let, so it will only be functionally scoped. It is assigned the value of 'Pam'.
+    // The first if statement is evaluated. The variable name strictly equals 'Pam', so name is assigned the value of 'Nathaniel'. It was not declared using one of the key words,
+    // so it reassigns the functionally scoped variable name (line 207) from 'Pam' to 'Nathaniel'.
+    // We run the second if statement on line 212. The value name.length is longer than 0, so we declare the variable name in this block scope as 'Brittany'.
+    // We console.log A as 'Nathaniel'. We then console.log B as 'Nathaniel' because of the functionally scoped variable name value.
+    // Finally, we exit out of the 'sayName' function and console.log C as 'Brittany'.
   },
 
   exerciseF() {
@@ -233,7 +283,16 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We declare a global variable dog and assign it the value of 'Spot'.
+    // We declare a function 'petDog', but do not run it until it is invoked on line 272.
+    // We go back up to line 251.
+    // We console.log A as 'Spot'. There is not variable spot declared functionally, so the interpreter looks globally and finds that the variable dog equals 'Spot'.
+    // We run the if statement on line 254. The variable dog does strictly equals 'Spot', so the block scoped variable dog is assigned the value of 'Fluffy'.
+    // Next, the function 'rollOver' is defined, but not run until line 267. 
+    // Then, after running the function, we console.log B on line 259 as 'Spot'. Spot is not defined in the 'rollOver' function, so the interpreter looks globally.
+    // On line 261, dog is declared, but doesn't use a keyword, so it reassigns the value of the variable dog globally to 'Biscuit'.
+    // We exit out of the 'rollOver' function and console.log D which is 'Biscuit'.
+    // We exit out of the 'petDog' function and console.log E which is 'Biscuit' (because the dog variable wasn't defined in the 'petDog' function).
   },
 
   exerciseG() {
@@ -268,7 +327,14 @@ const scope = {
                     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We globally declare the variable fruit and assign it the value of 'apple'.
+    // We declare the function 'eatFruit', but do not run it until it is invoked on line 317.
+    // After the function has been invoked, we look at the if statement. The variable fruit is not defined functionally, so the interpreter looks globally and sees that the variable fruit has the value of 'apple'.
+    // The condition is true, 'apple' does not strictly equal 'kiwi', so the variable fruit is assigned to 'mango'. For variables declared with var, it can possibly "leak out" to the next level.
+    // In the function scope, fruit is now defined with the value of 'mango'. We run the second conditional. The variable fruit exists. The conditional equates to true,
+    // and we console.log A. In the block scope fruit was declared using const, after we did the console.log. So, console.log A will return "reference error".
+    // We console.log B as 'mango'. We console.log C as also 'mango'.
+    // We exit out of the function 'eatFruit' and console.log D as 'apple' (because of the global scope variable fruit).
   },
 
   exerciseH() {
@@ -314,7 +380,21 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We declare a global variable num and assign it the value of 4.
+    // Next, we declare the function 'fn1', but don't run it untli it is invoked on line 371.
+    // We also decare the function 'fn2', but don't run it until it is invoked within the 'fn1' function.
+    // // After the 'fn1' function is invoked, we execute the code starting on line 343.
+    // We declare a functionally scoped variable num and assign it the value of 4.
+    // After that, we console.log A as 4.
+    // We declare a block scoped variable using the keyword const. The variable num is assigned the value of 9.
+    // We evaluate the conditional. The variable num is 4, which is less than 5, and equates to true, so we call the 'fn2' function passing in the parameter of num.
+    // Then we look at line 364 and console.log D which is 9.
+    // The variable num is now 9, so on line 366, we add 1, which equals 10.
+    // After console.logging E, we get 10.
+    // We exit out of the 'fn2' function and go back to the 'fn1' function on line 353.
+    // A new variable newNum is declared without a keyword, so it is declared functionally scoped as num which equals 4.
+    // Therefore, console.log C equals 4.
+    // Finally, we exit out of the 'fn1' function.
   },
 
   exerciseI() {
@@ -354,8 +434,29 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
-  },
+    // We declare a global variable hunger and assign it the value of 100.
+    // Then we decare the function 'eatSnack', but it is not executed until called on line 416.
+    // We then go back up to line 403.
+    // On line 405, hunger is defined without a keyword, so it looks at the global variable hunger which is 100.
+    // Then hunger = hunger - 25 => hunger = 100 - 25 = 75.
+    // We console.log A which is 75.
+    // Then we call the function 'gorgeYourself'. It starts running on line 409.
+    // Then hunger is declared using the keyword const, so it only applies to the function scope. It is assigned the value of 0.
+    // We console.log B which is 0.
+    // After we exit out of the function 'gorgeYourself', we console.log C which is 75.
+    // We exit out of the 'eatSnack' function and are back in the global scope.
+    // Hunger is declared but not using a keyword so it looks up and finds the variable hunger has the value of 75.
+    // Then hunger = hunger + 5 => hunger = 75 + 5 = 80.
+    // We console.log D which is now 80.
+    // We then invoke the 'eatSnack' function again.
+    // Hunger will now be 80 - 25 = 55.
+    // We console.log A as 55.
+    // The function 'gorgeYourself' is invoked for the second time. 
+    // The variable within this block scope is 0.
+    // We console.log B as 0.
+    // We exit out of the 'gorgeYourself' function and console.log C as 55.
+    // We exit out of the 'eatSnack' function for the second time and finally console.log E which is 55 (because hunger was not declared using the keyword in the function eatSnack on line 404)
+    },
 
   exerciseJ() {
     let sandwich = 'ketchup sandwich';
@@ -402,7 +503,24 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We declare a global variable sandwich and assign it the value of 'ketchup sandwich'.
+    // We console.log A which is 'ketchup sandwich'.
+    // Then we declare the 'addChipotle' function, which is not run until it is invoked on line 491.
+    // Then we declare the 'addCheese' function, which is not run until it is invoked on line 489.
+    // The variable cheeseTopping is declared, but not using a keyword, so is declared as a global variable with the value of 'kraft'.
+    // First, the 'addCheese' function is invoked.
+    // We go to line 477 and start executing the function (which will be run before the 'addChipotle' function).
+    // We declare a locally scoped variable cheeseTopping which is assigned the value 'gouda'.
+    // We console.log D which is 'gouda'.
+    // We declare a function expression called 'shesTheManReference'. It is not run until it is invoked on line 485.
+    // After it is invoked, we declare a variable amandaBynes which is not defined using a keyword, so it goes outwards to the functional and then global scope.
+    // We exit out of the 'shesTheManReference' function and the 'addCheese' function.
+    // Then we invoked the 'addChipotle' function and go up to line 466.
+    // We console.log B, but toppings is declared afterwards using the keyword var, so at this point console.log B equals void 0.
+    // On line 470, the if statement is run. The variable toppings strictly equals 'chipotle sandwich', so we declare a new variable sandwich without a keyword.
+    // This then goes all the way outwards to the global scope. We console.log C as 'not a mediocre sandwich'.
+    // We exit out of the 'addChipotle' function and console.log E which is 'not a mediocre sandwich'.
+    // Lastly, we console.log F which is 'National Treasure'.
   },
 
   exerciseK() {
@@ -426,7 +544,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We declare a global variable num and assign it the value of 10.
   },
 
   exerciseL() {
@@ -462,7 +580,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We declare a global variable grade and assign it the value of 100.
   },
 
   exerciseM() {
@@ -493,7 +611,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We declare a global variable num and assign it the value of 5.
   },
 
   exerciseN() {
@@ -539,7 +657,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We declare a global variable instructor and assign it the value of 'Pam'.
   },
 
   exerciseO() {
@@ -591,7 +709,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We declare a global variable lunch, but don't assign it any value as this point.
   },
 
   exerciseQ(){
@@ -634,7 +752,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We declare 2 global variables myKid and wildKids and assign them values respectively 'Pandora' and ['Antigone'].
   },
 
   exerciseR() {
@@ -666,7 +784,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We declare a global variable myName and assign it the value of 'Rody'.
   }
 };
 

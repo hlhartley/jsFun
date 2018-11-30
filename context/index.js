@@ -199,7 +199,7 @@ const context = {
     return result;
 
     // Annotation: 
-    // Each iteration in this map loop has access to the poets array because of the second declaration(thisArg). Therefore, `this` refers to the poets array.
+    // Each iteration in this map loop has access to the poets array because of the second optional parameter/argument (thisArg). Therefore, `this` refers to the poets array.
     // This would return the window object as this:
     // poets.map(function(poet) {
     //   return this;
@@ -227,11 +227,11 @@ const context = {
     });
 
     // What is the value of `this` when a user clicks on our #btn element and the callback is triggered?
-    const result = 'el';
+    const result = 'global window object';
     return result;
 
     // Annotation: 
-    // Using the ES6 arrow function, `this` is declared in the element, so it is still referring to the event el.
+    // Using the ES6 arrow function, `this` is declared in the element but the element hasn't been created yet, so it will now refer to the global window object.
   }
 
 };

@@ -30,7 +30,10 @@ const kittyPrompts = {
     })
     return result;
     // Annotation:
-    // Write your annotation here as a comment
+    // We are given an array, and we want to get the orange kitties out of the array,
+    // so we will use the `filter` method.
+    // We filter through each kitty object and use `map` to create a new array with just the names of the orange kitties via the orangeKitty.name property.
+    // Finally, we return the new array with just the orange kitty names.
   },
 
   sortByAge() {
@@ -42,11 +45,14 @@ const kittyPrompts = {
     return result;
 },
     // Annotation:
-    // The sort array prototype method is used to sort kitties in order by age. 'a' and 'b' are passed
-    // in as parameters in our callback function. 'a' represents the first element in the array
-    // that you are comparing. 'b' is the next element in the array. It will iterate through all
-    // the elements until all elements are in order from smallest to largest because our return statment
-    // is set up as a.age - b.age. If we did b.age - a.age, it would be from largest to smallest. 
+    // We are given an array, and want to sort the kitties in order by age,
+    // so we will use the `sort` method.
+    // 'a' and 'b' are passed in as parameters in our callback function. 
+    // 'a' represents the first element in the array that we are comparing. 
+    // 'b' is the next element in the array that we are comparing. 
+    // Using `sort`, we will iterate through all the elements in the array until all of the elements are in order from smallest to largest 
+    // (*Note: our return statment is a.age - b.age => smallest to largest. b.age - a.age => largest to smallest). 
+    // Finally, we return the array with the kitties in order by age.
 
   growUp() {
     // Return an array of kitties who have all grown up by 2 years e.g.
@@ -66,9 +72,14 @@ const kittyPrompts = {
         kitty.age += 2;
         return kitty;
     });
-return result;
+    return result;
 
-    // Annotation:
+    // Annotation: 
+    // We are given an array, and want to return an array of the same number of objects and properties, 
+    // so we will use the `map` method.
+    // Using `map` we will iterate over the entire array of kitties and increment their age by 2 each time.
+    // Each iteration, we reassign their age to the new value (+2).
+    // Finally, we return a new array of kitty objects.
   }
 };
 
@@ -110,12 +121,11 @@ const clubPrompts = {
     return result;
 
     // Annotation:
-    // We want to return one object, so we will use the reduce array prototype method.
-    // Using forEach to iterate over each club's member array. If our accumulator doesn't have
-    // a key of member, we are creating a key of member with the value of an array
-    // of currentClub. If the accumulator has the key of the member created, push
-    // the current club into the member's array. Finally, return a single object 
-    // with the member as keyand their clubs in an array for their value.
+    // We are given an array, and want to return one object, so we will use the `reduce` array prototype method.
+    // In the `reduce` method, we will use `forEach` to iterate over each club's member array. 
+    // If our accumulator doesn't include a key of member, we create a key of member with the value of an array of currentClub. 
+    // If the accumulator already has the key of the member created, we push the current club into the member's array.
+    // Finally, we return a single object with the member as key and their clubs in an array as their value.
   }
 };
 
@@ -156,7 +166,13 @@ const modPrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We are given an array, and want to return an array with the same number of objects within the array,
+    // so we will use `map`.
+    // Using `map` we iterate over each mod.
+    // During each mod iteration, we want to find the number of students per instructor, so we create a variable studentsPerInstructor.
+    // We assign that variable to mod.students divided by mod.instructors.
+    // Finally, we return a new object using curly bracket notation. 
+    // Mod and studentsPerInstructor are the keys while mod.mod and studentsPerInstructor are the values.
   }
 };
 
@@ -193,9 +209,12 @@ const cakePrompts = {
     return result;
 
     // Annotation:
-    // Since we are returning an array of objects, we infer we the same number as original array so we will use MAP. While mapping over the cakes array, 
-    // we only want to return objects with the flavor and in stock properties. By setting flavor to cake.cakeFlavor and instock to cake.inStock, we grab those 
-    // properties over each current cake as we iterate through the entire array. 
+    // We are given an array, and want to return an array of objects that has the same number of objects as original array,
+    // so we will use `map`. 
+    // While mapping over the cakes array, we only want to return objects with the flavor and in stock properties. 
+    // To make this new object, we set the key flavor to the value cake.cakeFlavor and the key inStock to the value cake.inStock.
+    // As we iterate through the cakes array, we grab those properties from each cake.
+    // Finally, we return the newly created object.
   },
 
   onlyInStock() {
@@ -225,7 +244,10 @@ const cakePrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We are given an array, and want to return an array of objects of only the cakes that are in stock.
+    // This number of objects will be different than the original array, so we will use `filter`.
+    // We iterate through each cake object in the cakes array and only return the cakes that have the property of inStock > 0.
+    // Finally, we return this new array.
   },
   
   totalInventory() {
@@ -239,7 +261,14 @@ const cakePrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We are given an array, and want to return a single value - the total amount (#) of cakes in stock,
+    // so we will use `reduce`.
+    // Passing in parameters, sum is the object we are returning and currentCake represents each cake object we are iterating through in the array.
+    // We set the initial value of the sum in `reduce` equal to 0, since we want to add on to this after each iteration.
+    // Then, sum is reassigned each time to sum + the value of currentCake.inStock.
+    // Each time the updated sum is returned. 
+    // Upon final iteration, the sum is returned and ends up equaling 59.
+
   },
 
   allToppings() {
@@ -258,7 +287,12 @@ const cakePrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We are given an array and want to return an array of all unique toppings needed to bake every cake in the dataset.
+    // We don't want repeats of toppings, and want to return an array with all these values, so we will use `reduce`.
+    // The accumulator object (acc) will be the object returned and currentCake is passed in as a parameter. It represents each cake that we will iterate through.
+    // To reduce topping repetitions, we need to use `forEach` and an if/else conditional.
+    // We iterate over each topping, and if the acc object doesn't include the topping, it will be pushed into the new blank array.
+    // Finally, the new acc object is returned with all of the toppings, no repeats.
   },
 
   groceryList() {
@@ -284,7 +318,12 @@ const cakePrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We are given an array, and want to return a single object, so we want to use `reduce`.
+    // First, we iterate through the cakes array and look at each cake, represented by currentCake in our `reduce` method parameters.
+    // To ensure that there are no topping repeats in the new object, we need to use `forEach` for each topping of each object.
+    // If it's not a current key in the acc object, that we are creating, the key will be the acc object's topping and the value will be set to 0 initially.
+    // After that, in each iteration, the number will increase by a count of 1 every time it finds that particular topping.
+    // Finally, when we return the new object, our keys will be each topping with a numerical value (based on how many times it was counted total in the `forEach` loop).
   }
 };
 
@@ -321,7 +360,11 @@ const classPrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We are given an array, and want to return an array with a different number of objects than in the original array,
+    // so we will use `filter`. 
+    // First, we iterate through the classrooms object.
+    // For each room, we want to return the rooms that have a property of program strictly equals to 'FE'.
+    // `Filter` will return a new array with only objects that room.program === 'FE'.
   },
 
   totalCapacities() {
@@ -343,15 +386,14 @@ const classPrompts = {
     return result;
 
     // Annotation:
-    // The ultimate goal is to produce one object (with feCapacity: #, beCapacity: #}, so we will need to use the array prototype 
-    // method reduce.
-    // Initially, we set up the initial values for our acc object as {feCapacity: 0, beCapacity: 0} in our
-    // reduce method. 
-    // We will iterate through each classroom, and if the room.program is strictly equals to 'FE', then we will
+    // We are given an array, and want to produce one object looking like {feCapacity: #, beCapacity: #}, 
+    // so we will need to use the array prototype method `reduce`.
+    // Initially, we set up the initial values for our acc object as {feCapacity: 0, beCapacity: 0}.
+    // Next, we iterate through each classroom, and if the room.program is strictly equals to 'FE', then we will
     // add the room.capacity number each time to the acc object's feCapacity value(#).
     // Otherwise, if the room.program is strictly equals to 'BE', the room.capacity number will be added
-    // each time to the beCapacity value (#) in the initial object that we created. 
-    // Finally, the acc object is returned.
+    // each time to the beCapacity value (#), in the initial object that we created. 
+    // Finally, the new acc object is returned.
   },
 
   sortByCapacity() {
@@ -363,7 +405,12 @@ const classPrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We are given an array, and want to return an array of the same length, but sorted by capacity (least to greatest).
+    // Therefore, we will use `sort`. 
+    // Passed in as parameters are "a" and "b".
+    // "a" represents the first item we are comparing and "b" represents the second item we are comparing.
+    // After it iterates through the entire array, it will return the list of objects from least to greatest capacity.
+    // On the other hand, if we returned b.capacity - a.capacity, it would return the list of objects from greatest to least capacity.
     }
 };
 
@@ -396,7 +443,11 @@ const breweryPrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We are given an array, and want to only return 1 number, which is the total beer count of all beers for every brewery.
+    // Hence, we will use `reduce`.
+    // The initial value of sum starts at 0 and each time we iterate through each brewery object,
+    // we want to increase the sum value by the number of beers (which is represented by currentBrewery.beers.length).
+    // Finally, when we return the sum, it will return a value of 40.
   },
 
   getBreweryBeerCount() {
@@ -414,7 +465,12 @@ const breweryPrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We are given an array, and want to return an array of the same length,
+    // so we will use `map`.
+    // `Map` returns an array of the same length, so for each iteration, we will return a new object.
+    // The object will have 2 keys, name and beerCount. 
+    // The corresponding values are the brewery's name(brewery.name) and the brewery's beer count(brewery.beers.length).
+    // Finally, we will return the new array.
   },
 
   findHighestAbvBeer() {
@@ -422,34 +478,25 @@ const breweryPrompts = {
     // e.g.
     // { name: 'Barrel Aged Nature\'s Sweater', type: 'Barley Wine', abv: 10.9, ibu: 40 }
 
-        // const allBeers = breweries.reduce((acc, brewery) => {
-        //       acc = acc.concat(brewery.beers)
-        //       return acc;
-        //     }, []).find((beer) => {
-        //       return Math.max(beer.abv)
-        //     });
-        // allBeers;
-
-    // const result = breweries.reduce((acc, brewery) => {
-    //   acc = acc.concat(brewery.beers);
-    //   return acc;
-    //     }, []);
-    //     let beerAbvs = allBeers.reduce((acc, beer) => {
-    //     acc = acc.concat(beer.abv);
-    //     return acc
-    //     }, []);
-    //     let highestBeer = Math.max(...beerAbvs);
-    //     highestBeer
-
-        // get all beers in 1 array
-        // interate through all beers
-        // find beer with highest abv
-        // return 1 object
+    const result = breweries.reduce((acc, brewery) => {
+      acc = acc.concat(brewery.beers)
+      return acc;
+    }, []).sort((a, b) => {
+      return b.abv - a.abv;
+    });
+    return result.shift();
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We are given an array, and want to return just 1 beer that has the highest ABV of all the beers,
+    // so we will use `reduce`.
+    // The data is a bit difficult to work with because in the breweries class, the beers property of each brewery class is also an array of objects.
+    // Therefore, we need to get all of the beers of all of the breweries in one single array first.
+    // In our new blank array that we set as our initial value in our `reduce` method, we will assign it to have all of the beer objects within in by using `concat` and returning that object.
+    // After we get that new array from `reduce`, we need to sort the beers to get the one with the highet abv.
+    // By passing in "a" and "b" and then returning b.abv - a.abv, we get a list with the beer with the highest abv on top.
+    // Finally, in our result, we can use the `shift` method to target and return the beer with the highest abv.
 
-
+    // *Note: we can make a mapByAttribute expression declaration to use in future calculations. Ex:
     // const allBeers = breweries.reduce((acc, brewery) => {
     //   acc = acc.concat(brewery.beers);
     //   return acc;
@@ -464,6 +511,7 @@ const breweryPrompts = {
     // let beerAbv = mapByAttribute(allBeers, 'abv');
     // let beerIbu = mapByAttribute(allBeers, 'ibu');
 
+    // *Note: to get the highest number:
     // Math.max.apply(null, beerAbv);
     // OR Math.max(...beerAbv);
   }
@@ -519,13 +567,13 @@ const turingPrompts = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We are given 2 arrays, and want to return 1 array with the same number of objects,
+    // so we will use `map`. 
+    // Since there are 2 array datasets that we are working with, we need to find a property that they have in common.
+    // The module property in both the cohorts and instructors array share a commonality, so we can link the two arrays (represented by the matchingCohort var).
+    // Next, we need to find the number of students for each teacher based on the module the instructor teaches.
+    // Finally, we make and return an object literal with name and studentCount as the keys and instructor.name and numberStudents as the values.
   },
-
-  // map over our instructors array
-  // find the matching cohort for our current instructor
-  // grab student count value from the matching cohort
-  // return an object with current instructors name and studentCount value
 
 
   studentsPerInstructor() {
@@ -535,21 +583,23 @@ const turingPrompts = {
     // cohort1804: 10.5
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cohorts.reduce((ratioObj, currentCohort) => {
+    let matchingInstructors = instructors.filter((instructor) => {
+    return instructor.module === currentCohort.module;
+    });
+    ratioObj[`cohort${currentCohort.cohort}`] = currentCohort.studentCount / matchingInstructors.length;
+    return ratioObj;
+    }, {});
     return result;
 
-  // Working with 2 arrays
-    // want back an object
-    // Use Map
-    // Module in common
-
-    // Map over each cohort
-    // Calculate number of teachers per module
-    // Divide studentCount by numberOfTeachers
-    // Create new object with cohort as key, and studentCount as value
-
     // Annotation:
-    // Write your annotation here as a comment
+    // We are given 2 arrays, and want to return 1 object, so we will use `reduce`.
+    // We want the cohort year number (cohorts.cohort) as the key and the studentCount divided by the number of teachers per cohort as the value.
+    // In our `reduce ` method, we create an initial empty object and pass in the acc and currentCohort as parameters.
+    // currentCohort represents each cohort object in the cohorts array.
+    // As we iterate over each currentCohort, we declare a new variable matchingInstructors and assign it to the value we return from our `filter`.
+    // For each instructor, we want to `filter` through and get all modules from the instructors array that match up with the cohorts array.
+    // Finally, we create and return a new object represented by ratioObj with a template literal which is the key of [`cohort${currentCohort.cohort}`], and numerical value calculated by currentCohort.studentCount / matchingInstructors.length.
   },
 
   modulesPerTeacher() {
@@ -562,11 +612,26 @@ const turingPrompts = {
     //   Pam: [2, 4]
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = instructors.reduce((obj, instructor) => {
+    obj[instructor.name] = [];
+    instructor.teaches.forEach((subject) => {
+    cohorts.forEach((cohort) => {
+      if(cohort.curriculum.includes(subject) && !obj[instructor.name].includes(cohort.module)) {
+        }
+      })
+    })
+    return obj;
+    }, {});;
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We are working with 2 arrays, and want to return 1 object, so we will use `reduce`.
+    // First, we set up our object with the key (obj[instructor.name] and assign it to a blank array).
+    // The next step is, we need to iterate over the instructors array and grab each one's name and set it as the key in our new object.
+    // After that, we need to have a forEach, to check each subject that each instructor teaches.
+    // We need to check that the cohort's curriculum is the same, then push the mod # into the array.
+    // Our if conditional checks for if the cohort's curriculum already includes the subject AND the instructor name key hasn't been created yet.   
+    // Finally, we return a new object with the instructor's name as the keys and the modules taught as the values, without repeats.
   },
 
   curriculumPerTeacher() {
@@ -579,11 +644,25 @@ const turingPrompts = {
     //   recursion: [ 'Pam', 'Leta' ]
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cohorts.reduce((obj, currentCohort) => {
+      currentCohort.curriculum.forEach(subject => {
+      obj[subject] = [];
+        instructors.forEach(instructor => {
+          if(instructor.teaches.includes(subject)) {
+            obj[subject].push(instructor.name);
+          }
+        })
+      })
+      return obj
+    }, {});
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We are given 2 arrays, and want to return 1 object, so we will use `reduce`.
+    // This time each cirriculum value from the curriculum property array in the cohorts array will be used as key names in our new object.
+    // We need to use 2 `forEach` methods because we need to have access to both array properties (instructors.teaches and cohorts.curriculum), but the problem is that they are also both arrays of values.
+    // If instructors.teaches also includes the subject from currentCohort.curriculum, then we will push the instructor name into our new object.
+    // Finally, we will return the new object we created.
   }
 };
 
@@ -614,11 +693,24 @@ const bossPrompts = {
     //   { bossName: 'Scar', sidekickLoyalty: 16 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = Object.keys(bosses).reduce((array, currentBoss) => {
+      let name = bosses[currentBoss].name;
+      let loyaltySum = sidekicks.filter(sidekick => {
+        return sidekick.boss === name;
+      }).reduce((sum, sidekick) => {
+        return sum += sidekick.loyaltyToBoss;
+      }, 0);
+      array.push({ bossName: name, sidekickLoyalty: loyaltySum });
+      return array;
+    }, []);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We are given 1 bosses object and 1 sidekicks array, and want to return just 1 array.
+    // The tricky part here is working with the bosses object. We cannot use array prototypes directly on it, because it is not an array.
+    // Therefore, we need to use Object.keys to get each key from the bosses object.
+    // Then, we perform `reduce` on it to create the new array.
+
   }
 };
 
@@ -655,12 +747,30 @@ const astronomyPrompts = {
     //     lightYearsFromEarth: 640,
     //     color: 'red' }
     // ]
+    let constellationsList = (Object.keys(constellations)).reduce((constellationsArr, currentConstellation) => {
+      return constellationsArr.concat(constellations[currentConstellation].stars);
+    }, []);
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = stars.reduce((acc, currentStar) => {
+      constellationsList.forEach((starName) => {
+        if(starName === currentStar.name) {
+          acc.push(currentStar);
+        }
+      })
+      return acc;
+    }, []);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Given 1 object of objects, 1 array
+    // => 1 array
+    // Use reduce or filter
+    // Common: star names
+
+    // Start with stars dataset (because we will be iterating over the objects)
+    // Use reduce, set up blank Array
+    // For each currentStar, see if star name is in constellations dataset
+    // If it is, push the star into the Array
   },
 
   starsByColor() {
@@ -674,7 +784,13 @@ const astronomyPrompts = {
     //   red: [{obj}]
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = stars.reduce((acc, currentStar) => {
+        if(!acc[currentStar.color]) {
+            acc[currentStar.color] = [];
+        }
+        acc[currentStar.color].push(currentStar);
+        return acc;
+        }, {});
     return result;
 
     // Annotation:
@@ -694,7 +810,9 @@ const astronomyPrompts = {
     //   'Orion',
     //   'Centaurus' ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = stars.map((star) => {
+        return star.constellation;
+    });
     return result;
 
     // Annotation:
@@ -725,7 +843,15 @@ const ultimaPrompts = {
     // Return the sum of the amount of damage for all the weapons that our characters can use
     // Answer => 113
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    let allWeaponsArray = characters.reduce((acc, currentCharacter) => {
+      acc = acc.concat(currentCharacter.weapons);
+      return acc;
+    }, []);
+    //  allWeaponsArray;
+
+    let result = allWeaponsArray.reduce((sum, currentWeapon) => {
+      return sum += weapons[currentWeapon].damage
+    }, 0);
     return result;
 
     // Annotation:
@@ -737,11 +863,55 @@ const ultimaPrompts = {
     // Return the sum damage and total range for each character as an object. 
     // ex: [ { Avatar: { damage: 27, range: 24 }, { Iolo: {...}, ...}
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    let result = characters.map((currentCharacter) => {
+      let charDmg = currentCharacter.weapons.reduce((sum, currentWeapon) => {
+        sum += weapons[currentWeapon].damage;
+        return sum;
+      }, 0);
+      let rangeDmg = currentCharacter.weapons.reduce((sum, currentWeapon) => {
+        sum += weapons[currentWeapon].range;
+        return sum;
+      }, 0);
+      return { 
+        [currentCharacter.name]: { damage: charDmg, range: rangeDmg } 
+      };
+    });
     return result;
+    
 
     // Annotation:
     // Write your annotation here as a comment
+
+    // BETTER REFACTOR:
+    // let charactersByTotal = characters.map((currentCharacter) => {
+    //     let weaponStats = currentCharacter.weapons.reduce((sum, currentWeapon) => {
+    //         sum.damage += weapons[currentWeapon].damage;
+    //         sum.range += weapons[currentWeapon].range;
+    //         return sum;
+    //     }, { damage: 0, range: 0});
+
+    //     return { 
+    //         [currentCharacter.name]: weaponStats,
+    //     };
+    // });
+
+    // BEST REFACTOR(SRP): 
+
+    // const weaponStats = (character) => {
+    //     return character.weapons.reduce((sum, currentWeapon) => {
+    //           sum.damage += weapons[currentWeapon].damage;
+    //           sum.range += weapons[currentWeapon].range;
+    //           return sum;
+    //     }, { damage: 0, range: 0});
+    // }
+
+    // const charactersByTotal = characters.map((currentCharacter) => {
+    //     return { 
+    //       [currentCharacter.name]: weaponStats(currentCharacter),
+    //     };
+    // });
+
+    
   },
 };
 
