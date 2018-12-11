@@ -613,15 +613,17 @@ const turingPrompts = {
     // }
 
     const result = instructors.reduce((obj, instructor) => {
-    obj[instructor.name] = [];
-    instructor.teaches.forEach((subject) => {
-    cohorts.forEach((cohort) => {
-      if(cohort.curriculum.includes(subject) && !obj[instructor.name].includes(cohort.module)) {
-        }
-      })
-    })
-    return obj;
-    }, {});;
+        obj[instructor.name] = [];
+        instructor.teaches.forEach((subject) => {
+            cohorts.forEach((cohort) => {
+                if(cohort.curriculum.includes(subject) && !obj[instructor.name].includes(cohort.module)) {
+                    obj[instructor.name].push(cohort.module);
+                }
+            })
+        })
+        return obj;
+    }, {});
+    
     return result;
 
     // Annotation:
